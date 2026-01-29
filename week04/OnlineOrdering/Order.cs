@@ -1,34 +1,54 @@
 using System;
+using System.Text;
 
 public class Order
 {
-    private List<Product> _products;
+    private List<Product> _products = new List<Product>();
     private Customer _customer;
 
-    public Order(Customer customer, List<Product> products)
+    public Order(Customer customer)
     {
         _customer = customer;
-        _products = products;
     }
 
-    public int TotalOrderCost()
+    public void AddToOrder(Product product)
     {
-        // information comes from the list<product>
-        // must also add shipping cost $5 USA/ $35 other
-        int totalCost = 0;
-        return totalCost;
+        _products.Add(product);
     }
 
-    public string PackingLabel()
+    public double CalculateOrderTotal()
     {
-        // info comes from list<product>
-        string packingLabel = "";
-        return packingLabel;
+        double subTotal = 0;
+        foreach(Product p in _products)
+        {
+            subTotal += p.TotalProductCost();
+        }
+        
+        if (_customer.IsUsa())
+        {
+            double totalCost = subTotal + 5;
+            return totalCost;
+        }
+        else
+        {
+            double totalCost = subTotal + 35;
+            return totalCost;
+        }
     }
 
-    public string ShippingLabel()
+    public string GetPackingLabel()
     {
-        string shippingLabel = "";
+        StringBuilder packingLabel = new StringBuilder();
+        foreach (Product product in _products)
+        {
+            packingLabel.AppendLine(product.GetPackingList());
+        }
+        return packingLabel.ToString();
+    }
+
+    public string GetShippingLabel()
+    {
+        string shippingLabel = _customer.GetShippingAddress();
         return shippingLabel;
     }
 }

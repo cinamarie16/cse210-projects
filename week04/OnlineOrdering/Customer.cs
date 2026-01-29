@@ -13,6 +13,16 @@ public class Customer
 
     public bool IsUsa()
     {
-        return true;
+        if (_address.IsUsa())
+        {
+            return true;
+        }
+        return false;
     }
+    public string GetShippingAddress()
+    {
+        string address = $"{_name}\n{_address.GetDisplayAddress()}";
+        return address;
+    }
+
 }

@@ -4,26 +4,29 @@ public class Address
 {
     private string _streetAddress;
     private string _city;
-    private string _state;
-    private string _zipCode;
+    private string _stateOrProvince;
     private string _country;
 
-    public Address(string streetAddress, string city, string state, string zipCode, string country)
+    public Address(string streetAddress, string city, string state, string country)
     {
         _streetAddress = streetAddress;
         _city = city;
-        _state = state;
-        _zipCode = zipCode;
+        _stateOrProvince = state;
         _country = country;
     }
     
     public bool IsUsa()
     {
-        return true;
+        if (_country == "USA" || _country == "Usa")
+        {
+            return true;
+        }
+        return false;
     }
 
-    // needs to return a string, leaving void for outlining
-    public void GetDisplayAddress()
+    public string GetDisplayAddress()
     {
+        string address = $"{_streetAddress}\n{_city}, {_stateOrProvince}\n{_country}";
+        return address;
     }
 }
