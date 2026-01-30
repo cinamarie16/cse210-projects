@@ -4,7 +4,7 @@ using System.Text;
 public class Word
 {
     private string _text;
-    private bool _isHidden;
+    // private bool _isHidden;
 
     public Word (string text)
     {
@@ -28,29 +28,10 @@ public class Word
         {
             if (c != '_')
             {
-                _isHidden = false;
+                // _isHidden = false;
                 return false;
             }
         }
         return true;
     }
-    // public void Show()
-    // {
-    //     // _shownWord = _text;
-    // }
-    // public string GetDisplayText()
-    // {
-    //     string text = $"{_text}";
-    //     return text;
-    //     // if (_isHidden == true)
-    //     // {
-    //     //     string text = $"{_hiddenWord}";
-    //     //     return text;   
-    //     // }
-    //     // else
-    //     // {
-    //     //     string text = $"{_shownWord}";
-    //     //     return text;
-    //     // }
-    // }
 }

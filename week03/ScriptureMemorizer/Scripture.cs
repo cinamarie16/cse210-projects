@@ -5,7 +5,6 @@ using System.Text;
 public class Scripture
 {
     private Reference _reference;
-    // private List<Word> _words = new List<Word>();
     private List<string> _words = new List<string>();
     private string _verseText;
 
@@ -27,37 +26,31 @@ public class Scripture
         int leftToHide = numberToHide;
         do
         {
-            int maxIndex = _words.Count;
-            // getRandom number within max index range
             Random randomGenerator = new Random();
-            int randomIndex = randomGenerator.Next(1, maxIndex);
-            int listIndex = randomIndex - 1;
+            int randomIndex = randomGenerator.Next(0, _words.Count);
 
-            // get random word
-            string randomWord = _words[listIndex];
+            string randomWord = _words[randomIndex];
             Word w1 = new Word(randomWord);
 
-            // check if word at index isHidden
             bool w1Hidden = w1.IsHidden();
             if (w1Hidden == false)
             {
-                // hide word at the random index
                 string hiddenWord = w1.Hide();
-                _words[listIndex] = hiddenWord;
+                _words[randomIndex] = hiddenWord;
                 leftToHide = leftToHide - 1;
             }
         } while (leftToHide > 0);
-
     }
+    
     public string GetDisplayText()
     {
         _verseText = string.Join(' ', _words);
         string text = $"{_reference.GetDisplayText()} {_verseText}";
         return text;
     }
+    
     public bool IsCompletelyHidden()
     {
-        // check if whole scripture is hidden
         foreach (string w in _words)
         {
             Word w1 = new Word(w);
@@ -70,4 +63,9 @@ public class Scripture
         return true;
     }
 
+    public int NumberOfWords()
+    {
+        int numberOfWords = _words.Count;
+        return numberOfWords;
+    }
 }
