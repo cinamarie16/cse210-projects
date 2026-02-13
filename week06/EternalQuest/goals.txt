@@ -1,0 +1,6 @@
+260
+SimpleGoal~|~simple test~|~to test the simple goal code~|~10~|~True
+EternalGoal~|~eternal test~|~to test the eternal goal code~|~10
+ChecklistGoal~|~checklist test~|~to test the checklist goal code~|~10~|~50~|~3~|~3
+SimpleGoal~|~new simple~|~still testing~|~50~|~True
+SimpleGoal~|~big simple~|~still more testing~|~100~|~True
